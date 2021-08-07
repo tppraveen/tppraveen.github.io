@@ -4,10 +4,10 @@
 
 <h2>JavaScript HTML DOM</h2> 
  
-  investamount: <input type="number" id="investamount" value="100.0">Coins-<span id="invt_coins"></span><br>
-  
+  investamount: <input type="number" id="investamount" value="100.0">
+  Coins-<input type="number" id="invt_coins" value="0"><br><br> 
   buy percentage <input type="number" id="buypercentage" value="0.2"><br><br> 
-  buy: amt <input type="number" id="buy" value="10"><br>
+  buy: amt <input type="number" id="buy" value="0.031"><br>
   sell amt<input type="number" id="sell" value="20"><br><br>
   sell percentage <input type="number" id="sellpercentage" value="0.2"><br><br>
   <button onclick="find()">sub</button> 
@@ -50,17 +50,23 @@ Percentage:<span id="earnpercentage"></span>%
 <script>
 
     let investamount= document.getElementById("investamount").value;
+    
     let buypercentage= document.getElementById("buypercentage").value;
     let sellpercentage= document.getElementById("sellpercentage").value;
     let percentage= document.getElementById("investamount").value;
     let buy= document.getElementById("buy").value;
     let sell= document.getElementById("sell").value;
+    let intcoins= document.getElementById("invt_coins").value;
     var totalinvestamt;
     var buycoins;
     var buytax,selltax;
     var sellprofit,sellcoin;
     var sellreturns,earnpercentage;
     var status="Loss";
+var totalinvestamt=investamount;
+
+
+
   function find(){  
 
    investamount= document.getElementById("investamount").value;
@@ -69,11 +75,19 @@ Percentage:<span id="earnpercentage"></span>%
   percentage= document.getElementById("investamount").value;
     buy= document.getElementById("buy").value;
     sell= document.getElementById("sell").value;
- 
+     intcoins= document.getElementById("invt_coins").value;
+
+    console.log(investamount);
+   // if (investamount==0) {
+   //      investamount=intcoins*buy;
+   //      totalinvestamt=investamount;
+   //  console.log(investamount);
+   //  }
     buyfind();
     sellfind();
     
-    document.getElementById("buyprice").innerHTML = investamount;
+                console.log(totalinvestamt);
+    document.getElementById("buyprice").innerHTML =parseFloat(totalinvestamt)+parseFloat(buytax) ;
     document.getElementById("sellprice").innerHTML = sellprofit;
     profitloss=sellprofit-investamount;
     if(profitloss>=0)
@@ -81,8 +95,8 @@ Percentage:<span id="earnpercentage"></span>%
      else
       status="Loss";
     document.getElementById("profitloss").innerHTML = status;
-    
-    document.getElementById("invt_coins").innerHTML = buycoins;
+     
+    document.getElementById("invt_coins").value = buycoins;
     document.getElementById("totalinvest").innerHTML = investamount; 
     document.getElementById("return").innerHTML = sellreturns+"(-"+selltax+")"; 
     
@@ -95,12 +109,21 @@ earnpercentage=(profitt/investamount)*100;
     document.getElementById("earnpercentage").innerHTML =earnpercentage.toFixed(2); 
     
 }
-  function buyfind(){ 
-                var a = investamount;
-                var b = buypercentage / 100;
+  function buyfind(){  
+                let a = investamount;
+                totalinvestamt=a;
+                let b = buypercentage / 100;
                 buytax= (a*b).toFixed(3);
-  totalinvestamt=(investamount-buytax).toFixed(3);
-  buycoins=(totalinvestamt/buy).toFixed(2);
+                console.log(parseFloat(a));
+                console.log(parseFloat(buytax));
+  //totalinvestamt=parseFloat(a)+parseFloat(buytax);
+                console.log(totalinvestamt);
+  buycoins=(totalinvestamt/buy);
+
+  if(buycoins>0)
+      buycoins=buycoins;
+    else
+      buycoins=buycoins.toFixed(5);
     document.getElementById("investamt").innerHTML = totalinvestamt;
     document.getElementById("buytax").innerHTML =buytax; 
     document.getElementById("coins").innerHTML = buycoins;
