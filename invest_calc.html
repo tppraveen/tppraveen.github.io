@@ -97,7 +97,7 @@ var totalinvestamt=investamount;
     document.getElementById("profitloss").innerHTML = status;
      
     document.getElementById("invt_coins").value = buycoins;
-    document.getElementById("totalinvest").innerHTML = investamount; 
+    document.getElementById("totalinvest").innerHTML = parseFloat(totalinvestamt)+parseFloat(buytax) ; 
     document.getElementById("return").innerHTML = sellreturns+"(-"+selltax+")"; 
     
     document.getElementById("earnprofit").innerHTML =(sellprofit-investamount).toFixed(2);
