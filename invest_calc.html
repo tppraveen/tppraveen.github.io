@@ -1,51 +1,183 @@
+ 
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body{
+      background-color: black; width: 100%; 
+    }
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content { height: 350px;}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      position: static;bottom: 1px;
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+     
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    } 
+    h4{color: white;}
+    .col-sm-4{border: 2px solid white;}
+    h3{
+      background-color: white;padding: 5px;border: 1px solid black;color: black;
+    }
+    .well1{
+      margin-top: 2px;color: white;
+    }
+ .label{float:right}
+  </style>
+</head>
 <body onload="find()">
 
-<h2>JavaScript HTML DOM</h2> 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">tp</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Crypto Calc</a></li>
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+      <br>
+<div class="container-fluid text-center"> 
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="well"> 
+
+        <div class="input-group">
+          <span class="input-group-addon">Investment</span>
+          <input  type="number" id="investamount" value="50.15" class="form-control" > 
+        </div> 
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon">Coins</span>
+          <input   type="number" id="invt_coins" value="0" class="form-control" > 
+        </div>  
+
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="well"> 
+
+        <div class="input-group">
+          <span class="input-group-addon">Buy Amount</span>
+          <input  type="number" id="buy" value="0.229" class="form-control" > 
+        </div> 
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon">Buy %</span>
+          <input   type="number" id="buypercentage" value="0.2" class="form-control" > 
+        </div>  
+
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="well">
+
+        <div class="input-group">
+          <span class="input-group-addon">Sell Amount</span>
+          <input   type="number" id="sell" value="0.233" class="form-control" > 
+        </div> 
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon">Sell %</span>
+          <input   type="number" id="sellpercentage" value="0.2" class="form-control" > 
+        </div>   
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="well">
+        <button style="width: 100%;padding: 5px;background-color: yellow;" onclick="find()">Calc</button><br><br>
+        <button style="width: 100%;padding: 5px;background-color: yellow;" onclick="reset()">Reset</button> 
+      </div>
+    </div>
+  </div>
  
-  investamount: <input type="number" id="investamount" value="100.0">
-  Coins-<input type="number" id="invt_coins" value="0"><br><br> 
-  buy percentage <input type="number" id="buypercentage" value="0.2"><br><br> 
-  buy: amt <input type="number" id="buy" value="0.031"><br>
-  sell amt<input type="number" id="sell" value="20"><br><br>
-  sell percentage <input type="number" id="sellpercentage" value="0.2"><br><br>
-  <button onclick="find()">sub</button> 
- 
+  <div class="row">
+        <div class="col-sm-4 col-xs-4 well1 well" style="background-color: #1f8a91;">
+            Buy $<span id="buyprice"></span> 
+        </div> 
+        <div class="col-sm-4 col-xs-4 well1 well"  style="background-color: #960026;">
+            Sell $<span id="sellprice"></span>
+        </div> 
+        <div class="col-sm-4 col-xs-4 well1 well"  id="earnstatuscolor">
+            Status
+            <span id="profitloss"></span>
+        </div> 
+  </div>
 
-<p>Buy Price - <span id="buyprice"></span> Sell Price- <span id="sellprice"></span>
-Margin- <span id="profitloss"></span>
-</p>
+  <div class="row content"  style="margin-top: 2px;">
+    <div class="col-sm-4 text-left">
+        <h3>Buying</h3>
+        <h4>Buy $ : <span class="label label-default"><span  id="investamt"></span>(+<span id="buytax"></span>)</span></h4>
+        <h4>Coins:<span class="label label-default"> <span id="coins"></span></span></h4>
+        <h4>Buy Coin Price:<span class="label label-default"><span  id="buyamt"></span></span></h4> 
+    </div>
+    <div class="col-sm-4 text-left"> 
+        <h3>Selling</h3>
+        <h4>Sell $ : <span class="label label-default"><span  id="investamt"><span id="sellprofit"></span><!-- (+<span id="selltax"></span>) --></span></h4>
+        <h4>Coins:<span class="label label-default"><span id="sellcoin"></span></span></h4>
+        <h4>Sell Coin Price:<span class="label label-default"><span id="sellamt"></span></span></h4> 
+    </div>
+    <div class="col-sm-4  text-left">     
+        <h3>Margin</h3>  
+        <h4>Total Investment: <span class="label label-default"><span id="totalinvest"></span></span></h4>
+        <h4>Total return:<span class="label label-default"><span id="return"></span></span></h4>
+        <h4><span id="profitloss1"></span>:<span class="label label-default"><span id="earnprofit"></span></span></h4>
+        <h4>Percentage:<span class="label label-default"><span id="earnpercentage"></span>%</span></h4> 
+    </div>
+  </div>
 
-
-<p>Buy</p>
-<p > 
-Total invstment:<span id="investamt"></span>(+<span id="buytax"></span>)
+</div> 
 <br>
-Number of coins:<span id="coins"></span>
-<br>
-Total buy price:<span id="buyamt"></span> 
-</p>
+<footer class="container-fluid text-center">
+  <p>Designed by Praveen </p>
+</footer>
+  
 
 
-<p > 
-sell Profit amt:<span id="sellprofit"></span>(+<span id="selltax"></span>)
-<br>
-Number of coins:<span id="sellcoin"></span>
-<br>   
-Total sell price:<span id="sellamt"></span>
-</p>
-
-<p >other</p>
-<p > 
-Total Investment<span id="totalinvest"></span>
-<br>
-Total return:<span id="return"></span>
-<br>  
-Profit:<span id="earnprofit"></span>
-<br>   
-Percentage:<span id="earnpercentage"></span>%
-</p>
 
 <script>
 
@@ -63,67 +195,73 @@ Percentage:<span id="earnpercentage"></span>%
     var sellprofit,sellcoin;
     var sellreturns,earnpercentage;
     var status="Loss";
-var totalinvestamt=investamount;
+    var totalinvestamt=investamount;
 
 
 
   function find(){  
 
-   investamount= document.getElementById("investamount").value;
-   buypercentage= document.getElementById("buypercentage").value;
-   sellpercentage= document.getElementById("sellpercentage").value;
-  percentage= document.getElementById("investamount").value;
-    buy= document.getElementById("buy").value;
-    sell= document.getElementById("sell").value;
-     intcoins= document.getElementById("invt_coins").value;
+      investamount= document.getElementById("investamount").value;
+      buypercentage= document.getElementById("buypercentage").value;
+      sellpercentage= document.getElementById("sellpercentage").value;
+      percentage= document.getElementById("investamount").value;
+      buy= document.getElementById("buy").value;
+      sell= document.getElementById("sell").value;
+      intcoins= document.getElementById("invt_coins").value;
 
-    console.log(investamount);
-   // if (investamount==0) {
-   //      investamount=intcoins*buy;
-   //      totalinvestamt=investamount;
-   //  console.log(investamount);
-   //  }
-    buyfind();
-    sellfind();
-    
-                console.log(totalinvestamt);
-    document.getElementById("buyprice").innerHTML =parseFloat(totalinvestamt)+parseFloat(buytax) ;
-    document.getElementById("sellprice").innerHTML = sellprofit;
-    profitloss=sellprofit-investamount;
-    if(profitloss>=0)
-      status="Profit";
-     else
-      status="Loss";
-    document.getElementById("profitloss").innerHTML = status;
-     
-    document.getElementById("invt_coins").value = buycoins;
-    document.getElementById("totalinvest").innerHTML = parseFloat(totalinvestamt)+parseFloat(buytax) ; 
-    document.getElementById("return").innerHTML = sellreturns+"(-"+selltax+")"; 
-    
-    document.getElementById("earnprofit").innerHTML =(sellprofit-investamount).toFixed(2);
-    
-    
-    var profitt=sellreturns-investamount;  
-earnpercentage=(profitt/investamount)*100;
+      console.log(investamount);
+      // if (investamount==0) {
+      //      investamount=intcoins*buy;
+      //      totalinvestamt=investamount;
+      //  console.log(investamount);
+      //  }
+      buyfind();
+      sellfind();
 
-    document.getElementById("earnpercentage").innerHTML =earnpercentage.toFixed(2); 
+      console.log(totalinvestamt);
+      var x=parseFloat(totalinvestamt)+parseFloat(buytax) ;
+      document.getElementById("buyprice").innerHTML =x;
+      document.getElementById("sellprice").innerHTML = sellprofit;
+      profitloss=sellprofit-x;
+      if(profitloss>=0){
+          status="Profit";
+          document.getElementById("earnstatuscolor").style.background = "green";
+      }
+      else{
+          status="Loss";
+          document.getElementById("earnstatuscolor").style.background = "red";
+      }
+      document.getElementById("profitloss").innerHTML = status;
+      document.getElementById("profitloss1").innerHTML = status;
+
+      document.getElementById("invt_coins").value = buycoins;
+      document.getElementById("totalinvest").innerHTML = parseFloat(totalinvestamt)+parseFloat(buytax) ; 
+      document.getElementById("return").innerHTML =sellprofit; 
+
+      document.getElementById("earnprofit").innerHTML =(sellprofit-x).toFixed(3);
+
+
+      var profitt=sellreturns-investamount;  
+      earnpercentage=(profitt/investamount)*100;
+
+document.getElementById("earnpercentage").innerHTML =earnpercentage.toFixed(2); 
     
 }
   function buyfind(){  
-                let a = investamount;
-                totalinvestamt=a;
-                let b = buypercentage / 100;
-                buytax= (a*b).toFixed(3);
-                console.log(parseFloat(a));
-                console.log(parseFloat(buytax));
-  //totalinvestamt=parseFloat(a)+parseFloat(buytax);
-                console.log(totalinvestamt);
-  buycoins=(totalinvestamt/buy);
+    let a = investamount;
+    totalinvestamt=a;
+    let b = buypercentage / 100;
+    buytax= (a*b).toFixed(3);
+    console.log(parseFloat(a));
+    console.log(parseFloat(buytax));
+    //totalinvestamt=parseFloat(a)+parseFloat(buytax);
+    console.log(totalinvestamt);
+    buycoins=(totalinvestamt/buy);
 
-  if(buycoins>0)
-      buycoins=buycoins;
+    if(buycoins>0)
+         buycoins=buycoins;
     else
-      buycoins=buycoins.toFixed(5);
+         buycoins=buycoins.toFixed(5);
     document.getElementById("investamt").innerHTML = totalinvestamt;
     document.getElementById("buytax").innerHTML =buytax; 
     document.getElementById("coins").innerHTML = buycoins;
@@ -132,18 +270,30 @@ earnpercentage=(profitt/investamount)*100;
    
 }
   function sellfind(){  
-sellreturns=(sell*buycoins).toFixed(3); 
-                var a = sellreturns;
-                var b = sellpercentage / 100;
-                selltax= (a*b).toFixed(3);
-  sellprofit=(sellreturns-(a*b)).toFixed(3);
-    document.getElementById("sellprofit").innerHTML = sellprofit;
-    document.getElementById("selltax").innerHTML =selltax; 
-    document.getElementById("sellcoin").innerHTML = buycoins; 
-    document.getElementById("sellamt").innerHTML =sell; 
+      sellreturns=(sell*buycoins).toFixed(3); 
+      var a = sellreturns;
+      var b = sellpercentage / 100;
+      selltax= (a*b).toFixed(3);
+      sellprofit=(sellreturns-(a*b)).toFixed(3);
+
+
+      document.getElementById("sellprofit").innerHTML =  sellreturns+"(-"+selltax+")";
+      //document.getElementById("sellprofit").innerHTML = sellprofit;
+      //document.getElementById("selltax").innerHTML =selltax; 
+      document.getElementById("sellcoin").innerHTML = buycoins; 
+      document.getElementById("sellamt").innerHTML =sell; 
    
+}
+function reset() { 
+  document.getElementById("investamount").value="0";  
+  document.getElementById("buy").value="0";
+  document.getElementById("sell").value="0";
+  document.getElementById("invt_coins").value="0";
+  // body...
 }
 </script>
 
 </body>
 </html>
+
+
