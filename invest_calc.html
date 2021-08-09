@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>TP-Crypto Calc</title>
+        <link rel="shortcut icon" href="images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -165,8 +166,8 @@
         <h3>Margin</h3>  
         <h4>Total Investment: <span class="label label-default"><span id="totalinvest"></span></span></h4>
         <h4>Total return:<span class="label label-default"><span id="return"></span></span></h4>
-        <h4><span id="profitloss1"></span>:<span class="label label-default"><span id="earnprofit"></span></span></h4>
-        <h4>Percentage:<span class="label label-default"><span id="earnpercentage"></span>%</span></h4> 
+        <h4><span id="profitloss1"></span>:<span class="label label-default" id="color1"><span id="earnprofit"></span></span></h4>
+        <h4>Percentage:<span class="label label-default " id="color2"><span id="earnpercentage"></span>%</span></h4> 
     </div>
   </div>
 
@@ -226,10 +227,14 @@
       if(profitloss>=0){
           status="Profit";
           document.getElementById("earnstatuscolor").style.background = "green";
+          document.getElementById("color1").style.background = "green";
+          document.getElementById("color2").style.background = "green";
       }
       else{
           status="Loss";
           document.getElementById("earnstatuscolor").style.background = "red";
+          document.getElementById("color1").style.background = "red";
+          document.getElementById("color2").style.background = "red";
       }
       document.getElementById("profitloss").innerHTML = status;
       document.getElementById("profitloss1").innerHTML = status;
