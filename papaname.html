@@ -116,12 +116,12 @@
       for (let i = 0; i < name.length; i++) { 
         count += parseInt(calculateLetterNumNumerology(name[i]));
       }
-      
+      document.getElementById("count").innerHTML = count
       if (count >= 10) {
         let aStr = count.toString();
         return parseInt(parseInt(aStr[0]) + parseInt(aStr[1]));
       }
-      document.getElementById("count").innerHTML = count
+      
       return count;
     }
 
