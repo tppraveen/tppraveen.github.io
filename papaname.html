@@ -123,7 +123,7 @@
         count += parseInt(calculateLetterNumNumerology(name[i]));
       }
       document.getElementById("count").innerHTML = count
-      document.getElementById("count1").innerHTML = parseInt(parseInt(count)+parseInt(9))
+      document.getElementById("count1").innerHTML = parseInt(count+9)
       if (count >= 10) {
         let aStr = count.toString();
         return parseInt(parseInt(aStr[0]) + parseInt(aStr[1]));
