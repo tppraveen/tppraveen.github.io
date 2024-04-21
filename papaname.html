@@ -13,13 +13,13 @@
       <input type="text" id="name" class="form-control">
     </div>
     <button onclick="findName()" class="btn btn-primary">Submit</button>
-   <h1>With initial P</h1>
+   <h1>With initial P(dont add p in input)</h1>
     <h2 style="color:blue" class="mt-4">Letters: <span id="demo" style="color:black"></span></h2>
     <h2 style="color:red">Total:<span id="count" style="color:green"></span> <br> Count<span id="number" style="color:green"></span></h2>
-  <h1>With initial TP</h1>
+  <h1 style=' display:none'>With initial TP</h1>
     
-  <h2 style="color:blue" class="mt-4">Letters: <span id="demo1" style="color:black"></span></h2>
-    <h2 style="color:red">Total:<span id="count1" style="color:green"></span> <br> Count<span id="number1" style="color:green"></span></h2>
+  <h2 style="color:blue;display:none" class="mt-4">Letters: <span id="demo1" style="color:black"></span></h2>
+    <h2 style="color:red; display:none">Total:<span id="count1" style="color:green"></span> <br> Count<span id="number1" style="color:green"></span></h2>
     
   </div>
 
@@ -140,18 +140,18 @@
         return;
       }
 
-      const result = calculateNameNumerology("p"+name); 
+      const result = calculateLetterNumerology("p"+name); 
       const countnum = calculateNameNumbercount(name); 
 
       document.getElementById("demo").innerHTML = result;
       document.getElementById("number").innerHTML = countnum;
 
 
-        const result = calculateNameNumerology("tp"+name); 
-      const countnum = calculateNameNumbercount(name); 
+       // const result = calculateNameNumerology("tp"+name); 
+   //   const countnum = calculateNameNumbercount(name); 
 
-      document.getElementById("demo1").innerHTML = result;
-      document.getElementById("number1").innerHTML = countnum;
+  //    document.getElementById("demo1").innerHTML = result;
+   //   document.getElementById("number1").innerHTML = countnum;
                               
       if (countnum !== 9) {
        // alert("The total is not 9.");
