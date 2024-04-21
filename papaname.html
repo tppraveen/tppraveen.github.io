@@ -9,11 +9,11 @@
   <div class="container mt-5">
     <h2 class="mb-4">Find Names by Character</h2>
     <div class="form-group">
-      <label for="name">Enter Name:</label>
+      <label for="name">Enter Name:(dont add P - input)</label>
       <input type="text" id="name" class="form-control">
     </div>
     <button onclick="findName()" class="btn btn-primary">Submit</button>
-   <h1>With initial P(dont add p in input)</h1>
+   <h1>With initial P</h1>
     <h2 style="color:blue" class="mt-4">Letters: <span id="demo" style="color:black"></span></h2>
     <h2 style="color:red">Total:<span id="count" style="color:green"></span> <br> Count<span id="number" style="color:green"></span></h2>
   <h1 style=' display:none'>With initial TP</h1>
@@ -123,7 +123,7 @@
         count += parseInt(calculateLetterNumNumerology(name[i]));
       }
       document.getElementById("count").innerHTML = count
-      document.getElementById("count1").innerHTML = parseInt(count+9)
+     // document.getElementById("count1").innerHTML = parseInt(count+9)
       if (count >= 10) {
         let aStr = count.toString();
         return parseInt(parseInt(aStr[0]) + parseInt(aStr[1]));
