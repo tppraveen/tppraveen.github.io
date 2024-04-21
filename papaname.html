@@ -13,6 +13,7 @@
       <input type="text" id="name" class="form-control">
     </div>
     <button onclick="findName()" class="btn btn-primary">Submit</button>
+    <button onclick="addValue()" class="btn btn-primary">Add Table</button>
    <h1>With initial P</h1>
     <h2 style="color:blue" class="mt-4">Letters: <span id="demo" style="color:black"></span></h2>
     <h2 style="color:red">Total:<span id="count" style="color:green"></span> <br> Count<span id="number" style="color:green"></span></h2>
@@ -23,6 +24,7 @@
     
   </div>
 
+  
   <table class="container mt-5 table table-bordered">
     <thead>
       <tr>
@@ -65,7 +67,17 @@
       </tr>
     </tbody>
   </table>
-
+<H3>Selected Names</H3>
+  
+<table id="dataTable" class="container mt-5 table table-bordered">
+     <thead>
+      <tr>
+        <th>Selected Names</th> 
+      </tr>
+    </thead>
+    <tbody> 
+    </tbody>
+</table>
   <script>
     function calculateLetterNumerology(letter) {
       const numerologyFormula = {
@@ -157,6 +169,18 @@
        // alert("The total is not 9.");
       }
     }
+    
+function addValue() {
+    var value = document.getElementById("name").value;
+    if (value.trim() !== "") {
+        var table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+        var cell = newRow.insertCell(0);
+        cell.innerHTML = value;
+    } else {
+        alert("Please enter a value!");
+    }
+}
   </script>
 </body>
 </html>
