@@ -73,6 +73,7 @@
      <thead>
       <tr>
         <th>Selected Names</th> 
+        <th>Count</th> 
       </tr>
     </thead>
     <tbody> 
@@ -177,6 +178,10 @@ function addValue() {
         var newRow = table.insertRow(table.rows.length);
         var cell = newRow.insertCell(0);
         cell.innerHTML = value;
+      
+    var value = document.getElementById("number").value;
+        var cell1 = newRow.insertCell(1);
+        cell1.innerHTML = value;
     } else {
         alert("Please enter a value!");
     }
