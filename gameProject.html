@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRVN Confidential</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for full-screen modal */
+        .modal-fullscreen {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .modal-content-fullscreen {
+            height: 100vh;
+            border: none;
+        }
+        .modal-body-fullscreen {
+            height: calc(100vh - 56px); /* Adjust height to exclude modal header */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Click Each button view Game Demo</h1>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-src="https://lukedev2.github.io/Bounce-Ball-Timer-Attack-/">Bounce Rush: Time Trial</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" data-src="https://65f34066f1c7daa2fdacc02e--bubbli-escape.netlify.app/">Tile Tumble</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-src="https://previews.customer.envatousercontent.com/files/350687329/index.html">Neon Marksman</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-src="https://previews.customer.envatousercontent.com/files/353245787/index.html">Jackpot Archer </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-src="https://0.s3.envato.com/files/206806639/index.html">Wobble Wackies- </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-Screen Modal -->
+    <div class="modal fade modal-fullscreen" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen" role="document">
+            <div class="modal-content modal-content-fullscreen">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Game Preview</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-body-fullscreen">
+                    <iframe id="modalIframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom Script to Handle Modal Iframe Source -->
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var src = button.data('src'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('#modalIframe').attr('src', src); // Update the iframe src
+        });
+
+        $('#exampleModal').on('hide.bs.modal', function (event) {
+            var modal = $(this);
+            modal.find('#modalIframe').attr('src', ''); // Clear the iframe src
+        });
+    </script>
+</body>
+</html>
