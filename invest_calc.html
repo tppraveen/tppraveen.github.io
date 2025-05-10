@@ -354,6 +354,32 @@ OnHand
     <footer class="container-fluid text-center">
       <p>Designed by Praveen </p>
     </footer>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const url = 'https://jsonplaceholder.typicode.com/posts/1'; // Example of dummy data from JSONPlaceholder
+
+            // Make an API call
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display dummy data (simulating a weather response)
+                    document.getElementById('api-response').innerHTML = 
+                        `<h2>API Response:</h2>
+                         <p><strong>Title:</strong> ${data.title}</p>
+                         <p><strong>Body:</strong> ${data.body}</p>`;
+                })
+                .catch(error => {
+                    document.getElementById('api-response').innerHTML = 'Failed to fetch data. Please try again.';
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+    </script>
+    
     <script>
       let investamount = document.getElementById("investamount").value;
       let buypercentage = document.getElementById("buypercentage").value;
